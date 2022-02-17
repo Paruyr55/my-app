@@ -5,9 +5,11 @@ import Navbar from './components/Navbar/Navbar';
 import {BrowserRouter, Route, Routes} from 'react-router-dom'
 import ProfileComponent from './components/ProfileComponent/ProfileComponent';
 import logo from './logo.svg';
+import { updateNewPostText } from './redux/state';
  
 
-const App =()=> {
+const App =(props)=> { 
+  
   return (
     <BrowserRouter>
     <div className='appWrapper'>
@@ -15,8 +17,11 @@ const App =()=> {
       <Navbar/>      
         <div className='appWrapper-content'>
           <Routes>
-            <Route path="/profile" element={<ProfileComponent/>} />
-            <Route path="/dialogs" element={<Dialogs/>} />            
+            <Route path="/profile" 
+                   element = {<ProfileComponent state={props.state.profilePage} 
+                   dispatch = {props.dispatch}/>}  />
+            <Route path="/dialogs" 
+                   element={<Dialogs state={props.state.dialogsPage}/>} />            
           </Routes>
         </div>      
     </div>

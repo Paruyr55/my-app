@@ -11,6 +11,11 @@
     padding: 10px;
 }
 
-/* .messages .message{
+.txtArea{
+    height: 100px;
+    margin: 5px;
+}
 
-} */
+.sendBtn{
+    margin: 5px;
+}
