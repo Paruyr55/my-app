@@ -1,6 +1,5 @@
-import dialogsReducer, { sendMessageActionCreator, updateNewMessageTextActionCreator } from "./dialogsReducer";
-import profileReducer, { addPostActionCreator, updateNewPostTextActionCreator } from "./profileReducer";
-
+import dialogsReducer from "./dialogsReducer";
+import profileReducer from "./profileReducer";
 
 let store = {
     _state: {
@@ -32,22 +31,23 @@ let store = {
 
     },
     _callSubscriber() {
+        
         console.log('state changed');
     },
 
     getState() {
         return this._state
     },
-    subscribe(observer) {
-        this._callSubscriber = observer;
+    subscribe(observer) {                        
+        this._callSubscriber = observer;        
     },
 
     dispatch(action) {
-        
+               
         this._state.profilePage = profileReducer(this._state.profilePage, action);
         this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
-
-        this._callSubscriber(this._state);
+        
+        this._callSubscriber(this._state);        
     }
 
 };

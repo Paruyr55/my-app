@@ -1,26 +1,26 @@
 import React from "react"
-import { NavLink } from "react-router-dom";
-import { sendMessageActionCreator, updateNewMessageTextActionCreator } from "../../redux/dialogsReducer";
-import store from "../../redux/state";
 import DialogItem from "./DialogItem/DialogItem";
 import p from './Dialogs.module.css'
 import Message from "./Message/Message";
 
 
-const Dialogs = (props)=>{
+const Dialogs = (props)=>{    
     
-    let dialogsElements = props.state.dialogs.map((dialog)=>{return(<DialogItem name= {dialog.name} id = {dialog.id}/>)}) 
-    let messagesElements = props.state.messages.map((message)=>{return(<Message message = {message.message}/>)})
-    let newMessageText = props.newMessageText;
-
-    let onSendMessageClick = ()=>{
-        store.dispatch(sendMessageActionCreator());
+    let state = props.dialogsPage;
+    
+    let dialogsElements = state.dialogs.map((dialog)=>{return(<DialogItem name= {dialog.name} key = {dialog.id} 
+                                                                          id={dialog.id}/>)}); 
+    let messagesElements = state.messages.map((message)=>{return(<Message message = {message.message} key = {message.id}
+                                                                         id ={message.id}/>)});
+    
+    let onSendMessageClick = ()=>{        
+        props.sendMessage();
     };
 
     let onNewMessageChange = (e)=>{
-       
+                     
         let text = e.target.value;
-        store.dispatch(updateNewMessageTextActionCreator(text));
+        props.updateNewMessageText(text);
     };
     
    return (
@@ -33,7 +33,7 @@ const Dialogs = (props)=>{
                 <div className={p.txtBlock}>
                     <textarea name="" id="" cols="30" rows="60" 
                               className = {p.txtArea}
-                              value = {newMessageText}
+                              value = {state.dialogs.newMessageText}
                               onChange = {onNewMessageChange}/>                    
                     <button className={p.sendBtn} onClick={onSendMessageClick}> Send </button>
                 </div>
