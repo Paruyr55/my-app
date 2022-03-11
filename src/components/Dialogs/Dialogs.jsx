@@ -6,7 +6,7 @@ import Message from "./Message/Message";
 
 const Dialogs = (props)=>{    
     
-    let state = props.dialogsPage;
+    let state = props.dialogsPage;    
     
     let dialogsElements = state.dialogs.map((dialog)=>{return(<DialogItem name= {dialog.name} key = {dialog.id} 
                                                                           id={dialog.id}/>)}); 
@@ -33,7 +33,7 @@ const Dialogs = (props)=>{
                 <div className={p.txtBlock}>
                     <textarea name="" id="" cols="30" rows="60" 
                               className = {p.txtArea}
-                              value = {state.dialogs.newMessageText}
+                              value = {props.newMessageText}
                               onChange = {onNewMessageChange}/>                    
                     <button className={p.sendBtn} onClick={onSendMessageClick}> Send </button>
                 </div>

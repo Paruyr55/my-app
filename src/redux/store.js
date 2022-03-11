@@ -26,7 +26,7 @@ let store = {
                 { id: 2, message: 'Ինչպե՞ս ես' }
             ],
 
-            newMessageText: '',
+            newMessageText: 'Մուտքագրեք հաղորդագրությունը',
         },
 
     },
